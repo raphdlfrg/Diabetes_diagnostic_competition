@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.model_selection import StratifiedKFold, GridSearchCV
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import f1_score, classification_report, make_scorer
+from sklearn.metrics import f1_score, classification_report
 
 SEED = 1
 np.random.seed(SEED)
@@ -122,6 +122,6 @@ y_test_pred = (y_test_probs >= threshold).astype(int)
 # Save predictions
 y_test_pred = pd.DataFrame(y_test_pred, columns=['Diabetes_binary'], index=test_data['Unnamed: 0'])
 y_test_pred.index.name = 'index'
-y_test_pred.to_csv("test_predictionsLogReg_CustomThresholdTEMPO.csv", index=True)
+y_test_pred.to_csv("test_predictionsLogReg2.csv", index=True)
 
-print(f"Predictions saved to 'test_predictionsLogReg_CustomThreshold.csv'")
+print(f"Predictions saved to 'test_predictionsLogReg2.csv'")
