@@ -48,12 +48,12 @@ X_train_S, y_train_S = smote.fit_resample(X_train, y_train['Diabetes_binary'])
 
 
 param_grid = {
-    'penalty': ['l2', 'elasticnet'],
-    'C': [0.01, 0.1, 1],
+    'penalty': ['elasticnet'],
+    'C': [0.001, 0.005, 0.01],
     'solver': ['saga'],  # Supports 'l1' and 'elasticnet'
-    'max_iter': [100, 500, 1000],
-    'class_weight': ['balanced', None],
-    'l1_ratio': [0.1, 0.5, 0.9],  # For 'elasticnet'
+    #'max_iter': [100, 500, 1000],
+    'class_weight': ['balanced'],
+    'l1_ratio': [0.5],  # For 'elasticnet'
 }
 
 
@@ -72,7 +72,7 @@ def perform_grid_search(model, X_train, Y_train, params):
 # cls = LogisticRegression(random_state=SEED)
 # grid_search_rf, best_param_rf, best_score_rf = perform_grid_search(cls, X_train, y_train['Diabetes_binary'], params=param_grid)
 
-param_grid = {'C': [0.01], 'class_weight': ['balanced'], 'l1_ratio': [0.5], 'penalty': ['elasticnet'], 'solver': ['saga']}
+#param_grid = {'C': [0.005], 'class_weight': ['balanced'], 'l1_ratio': [0.5], 'penalty': ['elasticnet'], 'solver': ['saga']}
 #param_grid = {'C': [1]}
 cls = LogisticRegression(random_state=SEED)
 grid_search_rf, best_param_rf, best_score_rf = perform_grid_search(cls, X_train, y_train['Diabetes_binary'], params=param_grid)
@@ -82,7 +82,7 @@ cls_final = LogisticRegression(
     C=best_param_rf['C'],
     class_weight=best_param_rf['class_weight'],
     l1_ratio=best_param_rf['l1_ratio'],
-    max_iter=best_param_rf['max_iter'],
+    #max_iter=best_param_rf['max_iter'],
     penalty=best_param_rf['penalty'],
     solver=best_param_rf['solver'],
     random_state=SEED
